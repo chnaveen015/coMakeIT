@@ -1,7 +1,6 @@
 //create table Bus
 
-create table SeatAvailable(id int(11) not null  primary key,available_seats int(11) not null,journey_id int(11) not null,routeno int(11) not null,foreign key fk_sa(journey_id) references Journey(journey_id) on update cascade on delete restrict,foreign key fk_sc(routeno) references TicketCost(routeno) on update cascade on delete restrict);
-
+create table Bus(bus_id int(11) not null primary key,bus_type varchar(255) not null,capacity int(11) not null,destination varchar(255) not null,source varchar(255) not null);
 //insert into Bus
 
 insert into Bus values(101,"normal",50,"Secunderabad","Medchal"),(102,"deluxe",40,"Patancheru","Secunderabad"),(103,"normal",50,"Patancheru","Medchal"),(104,"deluxe",50,"LBNagar","Secunderabad");
