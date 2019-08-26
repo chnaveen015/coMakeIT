@@ -54,7 +54,7 @@
 		<%}
 			else{
 				out.println("<h3 align=\"center\">No Buses Available</h3>");
-				out.println("<a align=\"center\" href=\"User.jsp\"><input type=\"button\" value=\"Back\"></a>");
+				out.println("<a align=\"center\" href=\"Welcome.jsp\"><input type=\"button\" value=\"Back\"></a>");
 			}
 			%>
 

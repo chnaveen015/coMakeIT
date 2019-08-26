@@ -44,21 +44,26 @@ public class AvailableBusesList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at:").append(request.getContextPath());
 		BasicDetailsBean details=new BasicDetailsBean();
+		
 		details.setSource((String)request.getParameter("source"));
 		details.setDestination(request.getParameter("destination"));
 		details.setNoOfSeats(Integer.parseInt(request.getParameter("noofseats")));
 		details.setDateOfJourney(request.getParameter("dateofjourney"));
+		
 		Client client = ClientBuilder.newClient( new ClientConfig());
 		String apiURL = "http://localhost:8080/BusReservation/webapi/Buses";
 		WebTarget webTarget = client.target(apiURL).path("available-buses");
 		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
+		
 		Response clientResponse = invocationBuilder.post(Entity.entity(details, MediaType.APPLICATION_JSON));
+		
 		GenericType<ArrayList<BusDetails>> gType = new GenericType<ArrayList<BusDetails>>() {};
 		ArrayList<BusDetails> viewBuses = clientResponse.readEntity(gType);
-		RequestDispatcher dispatch = request.getRequestDispatcher("ViewBuses.jsp");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("details",details);
 
-			HttpSession session = request.getSession();
-			session.setAttribute("details",details);
+		RequestDispatcher dispatch = request.getRequestDispatcher("ViewBuses.jsp");
 		session.setAttribute("viewBuses",  viewBuses);
 		dispatch.forward(request, response);
 

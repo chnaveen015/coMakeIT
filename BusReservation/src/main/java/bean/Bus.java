@@ -2,10 +2,12 @@ package bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 
 @Entity(name="Bus")
+@Table(name = "Bus")
 public class Bus {
 		@Id
 		private int bus_id;

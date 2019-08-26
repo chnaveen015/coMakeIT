@@ -43,6 +43,7 @@ public class BeginReservation extends HttpServlet {
 				flag=1;
 				RequestDispatcher requestDispatcher=request.getRequestDispatcher("Reservation.jsp");
 				request.setAttribute("busDetails", busDetails);
+				session.removeAttribute("viewBuses");
 				requestDispatcher.forward(request, response);
 			}
 		}
